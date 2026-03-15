@@ -1,19 +1,37 @@
-import Navbar from './Navbar';
-import Hero from './Hero';
-import Services from './Services';
-import Sanctuary from './Sanctuary';
-import Reserve from './Reserve';
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
-function App() {
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import Ritual from './pages/Ritual';
+import Sanctuary from './pages/Sanctuary';
+import Reserve from './pages/Reserve';
+
+function AnimatedRoutes() {
+  const location = useLocation();
+  
   return (
-    <main className="bg-[#0B0B0B] min-h-screen">
-      <Navbar />
-      <Hero />
-      <Services />
-      <Sanctuary />
-      <Reserve />
-    </main>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="ritual" element={<Ritual />} />
+          <Route path="sanctuary" element={<Sanctuary />} />
+          <Route path="reserve" element={<Reserve />} />
+        </Route>
+      </Routes>
+    </AnimatePresence>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AnimatedRoutes />
+    </BrowserRouter>
+  );
+}

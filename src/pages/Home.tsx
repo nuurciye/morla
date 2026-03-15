@@ -29,8 +29,13 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <div className="w-24 h-24 border border-brass/50 rounded-full flex items-center justify-center mb-12 mx-auto">
-              <span className="text-4xl font-serif italic text-brass">M</span>
+            <div className="w-40 h-40 bg-canvas rounded-full flex items-center justify-center mb-12 mx-auto p-4 shadow-2xl">
+              <img 
+                src="https://storage.googleapis.com/aistudio-ext-prod-uploads-18024693261/1742080668632-image.png" 
+                alt="Morla Barber & Sanctuary" 
+                className="w-full h-full object-contain"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-6 leading-tight">
               Precision Crafted.<br />

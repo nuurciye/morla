@@ -1,39 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:italic&family=Inter:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  background-color: #0B0B0B; /* Obsidian Black */
-}
-
-html {
-  scroll-behavior: smooth;
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-obsidian: #0a0a0a;
+  --color-cognac: #8b4513;
+  --color-brass: #c2a878;
+  --color-canvas: #f9f9f7;
+  --color-stone: #e5e5e0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  color: white;
-  background-color: #0B0B0B;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas);
+  color: var(--color-obsidian);
   -webkit-font-smoothing: antialiased;
-}
-
-/* Custom Serif for that "Morla" Luxury touch */
-.font-serif {
-  font-family: 'Crimson Text', serif;
-}
-
-/* Hide scrollbar for a cleaner look while keeping functionality */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #0B0B0B;
-}
-::-webkit-scrollbar-thumb {
-  background: #8B4513;
-  border-radius: 10px;
+  -moz-osx-font-smoothing: grayscale;
 }
