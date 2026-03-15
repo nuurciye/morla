@@ -1,6 +1,7 @@
 import Navbar from './Navbar';
 import Hero from './Hero';
 import Services from './Services';
+import Sanctuary from './Sanctuary';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <Hero />
       <Services />
+      <Sanctuary />
     </main>
   );
 }
