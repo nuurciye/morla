@@ -183,17 +183,17 @@ export default function Reserve() {
                 <MapPin className="w-6 h-6 text-brass shrink-0" />
                 <div>
                   <p className="font-medium text-obsidian">Morla Barbershop</p>
-                  <p>123 Artisan Way, Suite 100</p>
-                  <p>Cityville, ST 12345</p>
+                  <p>Digfeer street</p>
+                  <p>Mogadishu, Somalia</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Phone className="w-6 h-6 text-brass shrink-0" />
-                <p>(555) 123-4567</p>
+                <p>(+2526) 1048-8807</p>
               </div>
               <div className="flex items-start gap-4">
                 <Mail className="w-6 h-6 text-brass shrink-0" />
-                <p>hello@morla.com</p>
+                <p>morlacompanyy@gmail.com</p>
               </div>
             </div>
           </div>
