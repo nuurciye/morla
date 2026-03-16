@@ -138,14 +138,14 @@ export default function Home() {
               }
             ].map((barber, idx) => (
               <div key={idx} className="flex flex-col group">
-                <div className="relative aspect-[3/4] mb-8 overflow-hidden bg-stone/20">
+                <div className="relative aspect-[4/5] mb-8 overflow-hidden bg-stone/20 border border-obsidian/5">
                   <img 
                     src={barber.image} 
                     alt={barber.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover grayscale opacity-90 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-obsidian/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                  <div className="absolute inset-0 bg-obsidian/10 group-hover:bg-transparent transition-colors duration-1000"></div>
                 </div>
                 <h4 className="text-2xl font-bold uppercase tracking-tight mb-1">{barber.name}</h4>
                 <p className="text-sm uppercase tracking-widest text-cognac font-semibold mb-4">{barber.role}</p>

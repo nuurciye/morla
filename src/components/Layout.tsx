@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -51,10 +51,11 @@ export default function Layout() {
             </Link>
             <button
               onClick={() => setLanguage(language === 'en' ? 'so' : 'en')}
-              className="flex items-center gap-2 text-sm uppercase tracking-widest font-medium text-obsidian/70 hover:text-cognac transition-colors"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity text-obsidian/70 hover:text-cognac"
+              title={language === 'en' ? 'Switch to Somali' : 'Switch to English'}
             >
-              <Globe size={16} />
-              {language === 'en' ? 'SO' : 'EN'}
+              <span className="text-sm font-medium tracking-widest">{language === 'en' ? 'SO' : 'EN'}</span>
+              <span className="text-xl">{language === 'en' ? '🇸🇴' : '🇬🇧'}</span>
             </button>
           </div>
 
@@ -62,9 +63,11 @@ export default function Layout() {
           <div className="md:hidden flex items-center gap-4">
             <button
               onClick={() => setLanguage(language === 'en' ? 'so' : 'en')}
-              className="text-sm uppercase tracking-widest font-medium text-obsidian/70"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity text-obsidian/70"
+              title={language === 'en' ? 'Switch to Somali' : 'Switch to English'}
             >
-              {language === 'en' ? 'SO' : 'EN'}
+              <span className="text-sm font-medium tracking-widest">{language === 'en' ? 'SO' : 'EN'}</span>
+              <span className="text-xl">{language === 'en' ? '🇸🇴' : '🇬🇧'}</span>
             </button>
             <button
               className="p-2 text-obsidian"
