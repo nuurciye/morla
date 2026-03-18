@@ -1,14 +1,22 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Clock, Phone, Mail, CheckCircle2 } from 'lucide-react';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Calendar from '../components/Calendar';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Reserve() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useLanguage();
   const [step, setStep] = useState(1);
+
+  useEffect(() => {
+    if (location.state?.service) {
+      setSelectedService(location.state.service);
+      setStep(2);
+    }
+  }, [location.state]);
   const [selectedService, setSelectedService] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
