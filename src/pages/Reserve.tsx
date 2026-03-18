@@ -34,26 +34,53 @@ export default function Reserve() {
 
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name');
+    const email = formData.get('email');
     const phone = formData.get('phone');
     const serviceName = selectedService.split(' - ')[0];
 
-    // Format the WhatsApp message
-    const message = `*New Reservation Request*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Service:* ${serviceName}%0A*Date:* ${selectedDate}%0A*Time:* ${selectedTime}`;
-    
-    // Open WhatsApp in a new tab using the shop's phone number
-    const whatsappUrl = `https://wa.me/252612301508?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    try {
+      // Call the backend API
+      const response = await fetch('/api/reserve', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          service: serviceName,
+          date: selectedDate,
+          time: selectedTime,
+        }),
+      });
 
-    setIsSubmitting(false);
-
-    // Navigate to success page
-    navigate('/success', {
-      state: {
-        service: serviceName,
-        date: selectedDate,
-        time: selectedTime,
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to process reservation');
       }
-    });
+
+      // Format the WhatsApp message
+      const message = `*New Reservation Request*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Service:* ${serviceName}%0A*Date:* ${selectedDate}%0A*Time:* ${selectedTime}`;
+
+      // Open WhatsApp in a new tab using the shop's phone number
+      const whatsappUrl = `https://wa.me/252612301508?text=${message}`;
+      window.open(whatsappUrl, '_blank');
+
+      setIsSubmitting(false);
+
+      // Navigate to success page
+      navigate('/success', {
+        state: {
+          service: serviceName,
+          date: selectedDate,
+          time: selectedTime,
+        }
+      });
+    } catch (err: any) {
+      setError(err.message || 'An unexpected error occurred');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -174,7 +201,7 @@ export default function Reserve() {
                   </div>
                   <form className="space-y-4" onSubmit={handleConfirm}>
                     <input type="text" name="name" placeholder={t.reserve.fullName} required className="w-full px-6 py-4 border border-obsidian/20 focus:border-obsidian outline-none bg-transparent" />
-                    <input type="hidden" name="email" value="nuurciye@gmail.com" />
+                    <input type="email" name="email" placeholder={t.reserve.email} required className="w-full px-6 py-4 border border-obsidian/20 focus:border-obsidian outline-none bg-transparent" />
                     <input type="tel" name="phone" placeholder={t.reserve.phone} required className="w-full px-6 py-4 border border-obsidian/20 focus:border-obsidian outline-none bg-transparent" />
                     
                     {error && (
